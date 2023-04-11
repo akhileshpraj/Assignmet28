@@ -1,0 +1,299 @@
+1.
+
+#include<iostream>
+using namespace std;
+class Complex
+{
+    int real,imag;
+    public:
+    Complex(int r,int i)
+    {
+        real=r  ,imag = i;
+    }
+    Complex()
+    {
+
+    }
+    friend  ostream & operator<<(ostream &os,Complex &c)
+    {
+        os<<"real = "<<c.real<<"imag = "<<c.imag<<endl;
+        return os;
+    }
+    void setdata(int real,int imag)
+    {
+        this-> real = real;
+        this-> imag = imag;
+    }
+};
+int main()
+{
+    Complex c1(2,3);
+    Complex c2;
+    c2.setdata(4,5);
+     cout<<c1<<c2;
+     return 0;  
+}
+
+2
+
+#include<iostream>
+using namespace std;
+class Complex
+{
+    int real,imag;
+    public:
+    Complex(int r,int i)
+    {
+        real=r  ,imag = i;
+    }
+    Complex()
+    {
+
+    }
+    friend  ostream & operator<<(ostream &os,Complex &c)
+    {
+        os<<"real = "<<c.real<<"imag = "<<c.imag<<endl;
+        return os;
+    }
+    void setdata(int real,int imag)
+    {
+        this-> real = real;
+        this-> imag = imag;
+    }
+    Complex &operator=(Complex &c)
+    {
+        this -> real = c.real;
+        this -> imag  = c.imag;
+    }
+};
+int main()
+{
+    Complex c1(2,3);
+    Complex c2;
+    c2.setdata(4,5);
+    Complex  c3;
+    c3 = c1 = c2;
+     cout<<c1<<c2;
+     return 0;  
+}
+
+3
+#include<iostream>
+using namespace std;
+class Array
+{
+    int a[100];
+    const int size = 100;
+    public:
+    Array()
+    {
+
+    }
+    void setArray(int n,int index)
+    {
+        if(index >  size)
+        {
+            cout<<"out of bound expection ";
+            exit(0);
+        }
+     a[index]=n;
+    }
+    void display(int index)
+    {
+        cout<<a[index]<<endl;
+    }
+    int operator[](int index)
+    {
+        if(index > size)
+        {
+        cout<<"Array index out of bound ";
+        exit(0);
+       }
+    return a[index];
+    }
+};
+int main()
+{
+    Array b;
+    b.setArray(5,90);
+  //  b.display(5);
+    cout<<b[90];
+    cout<<endl;
+    return 0;
+}
+
+4/5
+
+6
+#include<iostream>
+using namespace std;
+class Complex{
+    int real,img;
+    public:
+    Complex(int r,int i)
+    {
+        real=r,img=i;
+    }
+    Complex()
+    {
+
+    }
+    Complex operator==(const Complex p)
+    {
+        real=p.real;
+        img =p.img;
+    }
+    void display()
+    {
+        cout<<"real = "<<real<<"imag = "<<img<<endl;
+    }
+};
+int main()
+{
+    Complex c1(4,5),c2;
+    c2=c1;
+
+    c2.display();
+    return 0;
+
+}
+7
+#include<iostream>
+using namespace std;
+class Integer
+{
+    int i;
+    public:
+    Integer(int i):i(i)
+    {
+
+    }
+    int operator!()
+    {
+        return -i;
+    }
+};
+int main()
+{
+    Integer x=10;
+    cout<<!x;
+    return 0;
+}
+8
+#include<iostream>
+using namespace std;
+class coords3D
+{
+    double x,y,z;
+    public:
+    coords3D()
+    {
+        x=y=z=0;
+    }
+    coords3D(double x,double y,double z)
+    {
+        this -> x=x;
+        this -> y=y;
+        this -> z=z;
+    }
+    void display()
+    {
+        cout<<" x= "<<x<<endl;
+        cout<<" y= "<<y<<endl;
+        cout<<" z= "<<z<<endl;
+    }
+    coords3D operator,(coords3D obj)
+    {
+          coords3D temp;
+          temp.x=obj.x;
+          temp.y=obj.y;
+          temp.z=obj.z;
+          return temp;
+    }
+};
+int main()
+{
+    double x,y,z;
+    coords3D c1(1,2,3);
+    coords3D c2(4,5,6);
+    coords3D c3;
+    c3=(c1,c2);
+    c3.display();
+    cout<<endl;
+    coords3D c4(10,11,12);
+    c4.display();
+}
+
+9
+
+10
+#include<iostream>
+using namespace std;
+class coords3D
+{
+    double x,y,z;
+    public:
+    coords3D()
+    {
+        x=y=z=0;
+    }
+    coords3D(double x,double y,double z)
+    {
+        this -> x=x;
+        this -> y=y;
+        this -> z=z;
+    }
+    void display()
+    {
+        cout<<" x= "<<x<<endl;
+        cout<<" y= "<<y<<endl;
+        cout<<" z= "<<z<<endl;
+    }
+    coords3D operator,(coords3D obj)
+    {
+          coords3D temp;
+          temp.x=obj.x;
+          temp.y=obj.y;
+          temp.z=obj.z;
+          return temp;
+    }
+};
+int main()
+{
+    double x,y,z;
+    coords3D c1(1,2,3);
+    coords3D c2(4,5,6);
+    coords3D c3;
+    c3=(c1,c2);
+    c3.display();
+    cout<<endl;
+    coords3D c4(10,11,12);
+    c4.display();
+}
+
+11
+#include<iostream>
+using namespace std;
+class Arrow
+{
+    int marks;
+    public:
+     Arrow(int m)
+    {
+        marks=m;
+    }
+    void display()
+    {
+        cout<<marks<<endl;
+    }
+    Arrow *operator->()
+    {
+        return this;
+    }
+};
+int main()
+{
+    Arrow a1(30);
+    a1.display();
+    a1->display();
+}
